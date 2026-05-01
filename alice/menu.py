@@ -68,13 +68,14 @@ class Menu:
                 print("Sorry, screen too small")
 
 
+ 
     # A UNINTENDED LOL-ZONE: SORRY FOR THIS
     # ------------+----------+-------------
     #      /\O        |    _O      |      O
-    #       /\/         |   //|_     |      /_
-    #      /\           |    |        |     |\
-    #     /  \          |   /|        |    / |
-    #   LOL  LOL  |   LLOL   |  LOLLOL
+    #       /\/       |   //|_     |      /_
+    #      /\         |    |       |     |\
+    #     /  \        |   /|       |    / |
+    #   LOL  LOL      |   LLOL     |  LOLLOL
     # ------------+----------+-------------
     # BLACK MAGIC FULL FEATURED ENABLED
 
