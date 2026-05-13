@@ -1,5 +1,6 @@
 # Alice
-Alice is console utilite which helps you manage and define your aliases easy.
+
+Alice is a small console utility for browsing, searching, editing, and running shell aliases.
 
 
 
@@ -28,6 +29,28 @@ fi
 
 
 ## Usage
+
+Modern CLI mode:
+
+```shell
+alice list
+alice list --names
+alice search git
+alice show gs
+alice run gs
+alice edit
+alice path
+```
+
+Run without arguments to open the interactive curses menu:
+
+```shell
+alice
+```
+
+`alice run <name>` executes the alias command in a child shell. Commands that change shell state, such as `cd`, affect only that child shell.
+
+## Legacy usage
 
 You can wrap this script in a function in your command shell rc file as sample:
 

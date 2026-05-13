@@ -1,17 +1,15 @@
 import os
-import re
 import curses
 from curses import textpad
 import subprocess
 
-from alice_in_shell import Alice_in_shell
+from .alice_in_shell import Alice_in_shell
 
-from config import HOME, EDITOR, MENU_LANG
+from .config import HOME, EDITOR, MENU_LANG
 
 
 alice = Alice_in_shell(HOME)
 ALIASES = alice.get_aliases()
-alice.source_aliases()
 
 class Menu:
     """Generate menu"""
@@ -111,8 +109,7 @@ class Menu:
                     stdscr.refresh()
                 # editor mode
                 elif (
-                    key == curses.KEY_ENTER
-                    or key in [10, 13]
+                    (key == curses.KEY_ENTER or key in [10, 13])
                     and current_row_id == len(display_menu.menu) - 3
                 ):
                     alice.edit_aleases(EDITOR)
@@ -120,8 +117,7 @@ class Menu:
 
                 # load first page of aliases
                 elif (
-                    key == curses.KEY_ENTER
-                    or key in [10, 13]
+                    (key == curses.KEY_ENTER or key in [10, 13])
                     and current_row_id == len(display_menu.menu) - 2
                 ):
                     if ALIASES:
@@ -137,8 +133,7 @@ class Menu:
                         stdscr.addstr(1, 0, "Sory, there are no aleases")
                         stdscr.getch()
                 elif (
-                    key == curses.KEY_ENTER
-                    or key in [10, 13]
+                    (key == curses.KEY_ENTER or key in [10, 13])
                     and current_row_id == len(display_menu.menu) - 1
                 ):
                     stdscr.clear()
@@ -151,7 +146,7 @@ class Menu:
                         menu, current_row_id, current_page, menu_mode, height, width
                     )
                     break
-                elif key == curses.KEY_EXIT or ord("q"):
+                elif key == curses.KEY_EXIT or key == ord("q"):
                     break
 
                 display_menu.get_menu_list(stdscr, current_row_id, "main")
@@ -201,9 +196,7 @@ class Menu:
                     stdscr.refresh()
                     for _id, row in enumerate(menu):
                         if _id == current_row_id:
-                            cmdr = str(
-                                re.sub(r"[^\w\s]+|[\d]+", r"", f"{str(row)}").strip()
-                            )
+                            cmdr = str(row).split(".", 1)[1].strip()
                             stdscr.addstr(0, 0, cmdr)
                             stdscr.addstr(3, 0, "Press Enter to exec")
                             stdscr.getch()
@@ -215,7 +208,7 @@ class Menu:
                 elif key == curses.KEY_RESIZE:
                     stdscr.refresh()
                     height, width = stdscr.getmaxyx()
-                    display_rows(
+                    self.display_rows(stdscr,
                         menu, current_row_id, current_page, menu_mode, height, width
                     )
                     break
